@@ -1,24 +1,31 @@
-gulp-rev-append
+gulp-rev-appends
 ---
 > gulp plugin for cache-busting files using query string file hash
 
-[![Build Status](https://travis-ci.org/bustardcelly/gulp-rev-append.png?branch=master)](https://travis-ci.org/bustardcelly/gulp-rev-append)
+[![Build Status](https://travis-ci.org/duanjianbo/gulp-rev-appends.png?branch=master)](https://travis-ci.org/duanjianbo/gulp-rev-appends)
 
 installation
 ---
 ```
-$ npm install gulp-rev-append --save-dev
+$ npm install gulp-rev-appends --save-dev
 ```
 
 how?
 ---
 _gulpfile.js_
 ```
-var rev = require('gulp-rev-append');
-
+var rev = require('gulp-rev-appends');
+//default
 gulp.task('rev', function() {
   gulp.src('./index.html')
     .pipe(rev())
+    .pipe(gulp.dest('.'));
+});
+//custom
+gulp.task('rev', function() {
+  gulp.src('./index.html')
+    //rev(options) options:the array contains multiple custom rev-types
+    .pipe(rev([{type:'timestamp',value:()=>{return Date.now();}},{type:'version',value:()=>{return '1.6.0'}}]))
     .pipe(gulp.dest('.'));
 });
 
@@ -31,7 +38,7 @@ $ gulp rev
 
 what?
 ---
-The [gulp-rev-append](https://github.com/bustardcelly/gulp-rev-append) plugins allows for appending a query-string file hash to dependencies declared in html files defined using the following regex: `(?:href|src)="(.*)[\?]rev=(.*)[\"]`
+The [gulp-rev-appends](https://github.com/duanjianbo/gulp-rev-appends) plugins allows for appending a query-string file hash to dependencies declared in html files defined using the following regex: `(?:href|src)="(.*)[\?]rev=(.*)[\"]`
 
 That's fancy talk for any stylesheet or script declarations that are declared in an html file such as the following:
 
@@ -46,11 +53,14 @@ That's fancy talk for any stylesheet or script declarations that are declared in
   <body>
     <div><p>hello, world!</p></div>
     <script src="script/script-three.js?rev=@@hash"></script>
+    <script src="script/script-version.js?rev=@@version"></script>
+    <script src="script/script-timestamp.js?rev=@@timestamp"></script>
+    <script src="script/script-custom.js?rev=@@any-custom-type"></script>
   </body>
 </html>
 ```
 
-will turn into something similar as the following after running `gulp-rev-append`:
+will turn into something similar as the following after running `gulp-rev-appends`:
 ```
 <!doctype html>
 <html>
@@ -62,36 +72,17 @@ will turn into something similar as the following after running `gulp-rev-append
   <body>
     <div><p>hello, world!</p></div>
     <script src="script/script-three.js?rev=5cadf43edba6a97980d42331f9fffd17"></script>
+    <script src="script/script-version.js?rev=1.6.0"></script>
+    <script src="script/script-timestamp.js?rev=1579422890214"></script>
+    <script src="script/script-custom.js?rev=custom-type-value"></script>
   </body>
 </html>
 ```
-
-Any subsequent runs of the `gulp-rev-append` file will change the output _only_ if the target file(s) declared have been modified. This is because the revision hash is computed using the target file contents.
-
-The only requirement is that the dependency to be appended with the hash be declared using `?rev=`. The `@@hash` is not required, and any value will be overriden as the dependency file contents change.
+rev=@@hash,default rev-type
 
 why?
 ---
-I wanted to easily define dependencies that require simple cache-busting by using a query-string hash. The hash is based on file content, so any modification to the file dependency would result in a change to the generated and appended hash - effectively cache-busting the dependency in simple scenarios.
-
-__Be Warned__: Using query strings to cache-bust dependencies isn't fool proof. 
-
-[Google | Leverage Proxy Cache Article](https://developers.google.com/speed/docs/best-practices/caching?csw=1#LeverageProxyCaching)  
-[Steve Souders | Revving Filenames: don't use querystring](http://www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/)
-
-Other plugins that may work for your situation:
----
-There are several gulp plugins that already support revisioning and cache-busting: [https://www.npmjs.org/search?q=gulp-rev](https://www.npmjs.org/search?q=gulp-rev)
-
-I created this plugin as it fit my needs more clearly in:
-
-* enabling cache-busting by appending a file hash on query string
-* not requiring additionally markup commenting to declare dependencies to be modified
-* not generating an additional manifest to be a dependency in file access for production-level application
-
-For its particular use, I am not concerned with firewalls or proxy cache; I was trying to develop a simple web-based mobile site on a desktop while testing on devices and cache-ing was giving me a headache. I did not want to modify my workflow and build to accommodate an addition cache-manifest, nor did I foresee my work being in production in which I needed to support a more robust cache-busting technique.
-
-If the intent of this plugin does not meet your needs, please checkout the other possible [solutions](https://www.npmjs.org/search?q=gulp-rev) made by some awesome developers.
+In order to meet the project requirements of the company,forked from [bustardcelly/gulp-rev-append](https://github.com/bustardcelly/gulp-rev-append) and modify it to support custom rev-value.
 
 Tests
 ---
@@ -102,7 +93,7 @@ $ npm run test
 
 License
 ---
-Copyright (c) 2014 Todd Anderson
+Copyright (c) 2020 duanjianbo
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation

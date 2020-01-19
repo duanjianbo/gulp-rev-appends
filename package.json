@@ -1,11 +1,11 @@
 {
-  "name": "gulp-rev-append",
-  "version": "0.1.8",
+  "name": "gulp-rev-appends",
+  "version": "0.1.0",
   "description": "Cache-busting plugin for gulp.",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bustardcelly/gulp-rev-append"
+    "url": "https://github.com/duanjianbo/gulp-rev-appends"
   },
   "scripts": {
     "test": "node node_modules/.bin/cucumber-js"
@@ -18,11 +18,11 @@
     "cache",
     "revision"
   ],
-  "author": "Todd Anderson",
+  "author": "duanjianbo",
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/bustardcelly/gulp-rev-append/LICENSE-MIT"
+      "url": "https://github.com/duanjianbo/gulp-rev-appends/LICENSE-MIT"
     }
   ],
   "devDependencies": {
