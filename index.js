@@ -8,7 +8,16 @@ var map = require('event-stream').map;
 
 var FILE_DECL = /(?:href=|src=|url\()['|"]([^\s>"']+?)\?rev=([^\s>"']+?)['|"]/gi;
 
-var revPlugin = function revPlugin() {
+//add custom rev-types
+/*
+var revType=[{
+  type:'timestamp',  //custom type name and declared in html files defined using the following suffix 'rev=@@type-name'
+  value:function () { //func to return the type value
+    return Date.now();
+  }
+}];
+*/
+var revPlugin = function revPlugin(revTypes) {
 
   return map(function(file, cb) {
 
@@ -48,12 +57,24 @@ var revPlugin = function revPlugin() {
             else {
               dependencyPath = path.resolve(path.dirname(file.path), normPath);
             }
-
             try {
-              data = fs.readFileSync(dependencyPath);
-              hash = crypto.createHash('md5');
-              hash.update(data.toString(), 'utf8');
-              line = line.replace(groups[2], hash.digest('hex'));
+              var rev='';
+              if(revTypes && revTypes.length>0){
+                for(var revTypeIndex in revTypes){
+                  var revType=revTypes[revTypeIndex];
+                  if('@@'+revType.type===groups[2]){
+                    if(typeof revType.value==='function') rev=revType.value();
+                    break;
+                  }
+                }
+              }
+              if(!rev){
+                data = fs.readFileSync(dependencyPath);
+                hash = crypto.createHash('md5');
+                hash.update(data.toString(), 'utf8');
+                rev=hash.digest('hex');
+              }
+              line = line.replace(groups[2], rev);
             }
             catch(e) {
               // fail silently.
