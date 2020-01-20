@@ -16,7 +16,7 @@ module.exports = function() {
       cwd: 'test/fixtures/',
       base: 'test/fixtures/static',
       path: 'test/fixtures/static/timestamp-index.html',
-      contents: new Buffer(this.htmlFileContents('index'))
+      contents: new Buffer(this.htmlFileContents('timestamp-index'))
     });
     callback();
   });
