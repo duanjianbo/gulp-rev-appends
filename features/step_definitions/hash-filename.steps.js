@@ -51,7 +51,7 @@ module.exports = function() {
     callback();
   });
 
-  this.When(/^I invoke the gulp\-rev\-append plugin$/, function (callback) {
+  this.When(/^I invoke the gulp\-rev\-suffix plugin$/, function (callback) {
     var revver = this.plugin();
     revver.on('data', function(data) {
       result = data.contents.toString();
