@@ -21,6 +21,14 @@ module.exports = function() {
     callback();
   });
 
+  this.When(/^I invoke the gulp\-rev\-suffix plugin$/, function (callback) {
+    var revver = this.plugin();
+    revver.on('data', function(data) {
+      result = data.contents.toString();
+      callback();
+    });
+    revver.write(this.indexFile);
+  });
 
   this.Then(/^The dependency is appended with a timestamp inline$/, function (callback) {
     var fileDeclarationRegex = this.FILE_DECL;
