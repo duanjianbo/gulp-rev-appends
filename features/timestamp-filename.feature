@@ -5,6 +5,6 @@ Feature: Use gulp-rev-suffix to modify dependency declaration in html file
 
   Scenario: timestamp is appended to file dependency inline
     Given I have declared a dependency in an html file with '@@timestamp' tokens
-    When I invoke the gulp-rev-suffix plugin
+    When  invoke the gulp-rev-suffix plugin
     Then The dependency is appended with a timestamp inline
 
