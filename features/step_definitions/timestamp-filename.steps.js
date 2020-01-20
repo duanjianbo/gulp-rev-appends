@@ -23,11 +23,11 @@ module.exports = function() {
 
   this.When(/^invoke the gulp\-rev\-suffix plugin$/, function (callback) {
     var revver = this.plugin();
+    revver.write(this.indexFile);
     revver.on('data', function(data) {
       result = data.contents.toString();
       callback();
     });
-    revver.write(this.indexFile);
   });
 
   this.Then(/^The dependency is appended with a timestamp inline$/, function (callback) {
