@@ -31,11 +31,11 @@ var revPlugin = function revPlugin(revTypes) {
     var data, hash;
 
     if(!file) {
-      throw new PluginError('gulp-rev-append', 'Missing file option for gulp-rev-append.');
+      throw new PluginError('gulp-rev-suffix', 'Missing file option for gulp-rev-suffix.');
     }
 
     if(!file.contents) {
-      throw new PluginError('gulp-rev-append', 'Missing file.contents required for modifying files using gulp-rev-append.');
+      throw new PluginError('gulp-rev-suffix', 'Missing file.contents required for modifying files using gulp-rev-suffix.');
     }
 
     contents = file.contents.toString();

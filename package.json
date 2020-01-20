@@ -1,11 +1,11 @@
 {
-  "name": "gulp-rev-appends",
+  "name": "gulp-rev-suffix",
   "version": "0.1.0",
   "description": "Cache-busting plugin for gulp.",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/duanjianbo/gulp-rev-appends"
+    "url": "https://github.com/duanjianbo/gulp-rev-suffix"
   },
   "scripts": {
     "test": "node node_modules/.bin/cucumber-js"
@@ -14,7 +14,7 @@
     "gulp",
     "gulpplugin",
     "gulp-rev-append",
-    "gulp-rev-appends",
+    "gulp-rev-suffix",
     "cache-busting",
     "cache",
     "revision"
@@ -23,7 +23,7 @@
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/duanjianbo/gulp-rev-appends/LICENSE-MIT"
+      "url": "https://github.com/duanjianbo/gulp-rev-suffix/LICENSE-MIT"
     }
   ],
   "devDependencies": {

@@ -1,20 +1,20 @@
-gulp-rev-appends
+gulp-rev-suffix
 ---
 > gulp plugin for cache-busting files using query string file hash
 
-[![Build Status](https://travis-ci.org/duanjianbo/gulp-rev-appends.png?branch=master)](https://travis-ci.org/duanjianbo/gulp-rev-appends)
+[![Build Status](https://travis-ci.org/duanjianbo/gulp-rev-suffix.png?branch=master)](https://travis-ci.org/duanjianbo/gulp-rev-suffix)
 
 installation
 ---
 ```
-$ npm install gulp-rev-appends --save-dev
+$ npm install gulp-rev-suffix --save-dev
 ```
 
 how?
 ---
 _gulpfile.js_
 ```
-var rev = require('gulp-rev-appends');
+var rev = require('gulp-rev-suffix');
 //default
 gulp.task('rev', function() {
   gulp.src('./index.html')
@@ -38,7 +38,7 @@ $ gulp rev
 
 what?
 ---
-The [gulp-rev-appends](https://github.com/duanjianbo/gulp-rev-appends) plugins allows for appending a query-string file hash to dependencies declared in html files defined using the following regex: `(?:href|src)="(.*)[\?]rev=(.*)[\"]`
+The [gulp-rev-suffix](https://github.com/duanjianbo/gulp-rev-suffix) plugins allows for appending a query-string file hash to dependencies declared in html files defined using the following regex: `(?:href|src)="(.*)[\?]rev=(.*)[\"]`
 
 That's fancy talk for any stylesheet or script declarations that are declared in an html file such as the following:
 
@@ -60,7 +60,7 @@ That's fancy talk for any stylesheet or script declarations that are declared in
 </html>
 ```
 
-will turn into something similar as the following after running `gulp-rev-appends`:
+will turn into something similar as the following after running `gulp-rev-suffix`:
 ```
 <!doctype html>
 <html>
