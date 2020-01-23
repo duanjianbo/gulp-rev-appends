@@ -74,7 +74,7 @@ module.exports = function() {
     var fileDeclarationRegex = this.FILE_DECL;
     var declarations = result.match(fileDeclarationRegex);
     // defined in test/fixtures/static/index.html
-    expect(declarations.length).to.equal(3);
+    expect(declarations.length).to.equal(4);
     for(var i = 0; i < declarations.length; i++) {
       // plugin should change @@hash to hash based on file contents
       expect(fileDeclarationRegex.exec(declarations[i])[2]).to.not.equal('@@hash');
@@ -109,7 +109,7 @@ module.exports = function() {
     var fileDeclarationRegex = this.FILE_DECL;
     var declarations = result.match(fileDeclarationRegex);
     // defined in test/fixtures/static/index.html
-    expect(declarations.length).to.equal(3);
+    expect(declarations.length).to.equal(4);
     for(var i = 0; i < declarations.length; i++) {
       // plugin should change @@hash to timestamp based on file contents
       expect(fileDeclarationRegex.exec(declarations[i])[2]).to.not.equal('@@timestamp');
