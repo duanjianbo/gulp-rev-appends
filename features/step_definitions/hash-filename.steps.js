@@ -43,7 +43,7 @@ module.exports = function() {
 
 
   this.When(/^I invoke the gulp\-rev\-suffix plugin$/, function (callback) {
-    var revver = this.plugin();
+    var revver = this.plugin([{type:'timestamp',value:function(){return Date.now();}}]);
     revver.on('data', function(data) {
       result = data.contents.toString();
       callback();
