@@ -2,7 +2,7 @@ gulp-rev-suffix
 ---
 > gulp plugin for cache-busting files using query string file hash
 
-[![Build Status](https://travis-ci.org/duanjianbo/gulp-rev-suffix.png?branch=master)](https://travis-ci.org/duanjianbo/gulp-rev-suffix)
+[![Build Status](https://travis-ci.org/duanjianbo/gulp-rev-suffix.svg?branch=master)](https://travis-ci.org/duanjianbo/gulp-rev-suffix)
 
 installation
 ---
