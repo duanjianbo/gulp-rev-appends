@@ -8,7 +8,7 @@ Feature: Use gulp-rev-suffix to modify dependency declaration in html file
     When I invoke the gulp-rev-suffix plugin
     Then The dependency is appended with a hash inline
 
-  Scenario: Hashes are appended to file dependency inline
+  Scenario: Suffixes are appended to file dependency inline
     Given I have declared dependencies in an html file with revision tokens
     When I invoke the gulp-rev-suffix plugin
     Then The dependencies are appended with a hash inline
@@ -18,7 +18,3 @@ Feature: Use gulp-rev-suffix to modify dependency declaration in html file
     When I invoke the gulp-rev-suffix plugin
     Then The attributes following the revision tokens are preserved
 
-  Scenario: timestamp is appended to file dependency inline
-    Given I have declared a dependency in an html file with '@@timestamp' tokens
-    When I invoke the gulp-rev-suffix plugin
-    Then The dependency is appended with a timestamp inline
