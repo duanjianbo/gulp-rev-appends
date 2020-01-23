@@ -69,7 +69,7 @@ module.exports = function() {
     var declarations = result.match(fileDeclarationRegex);
     // defined in test/fixtures/static/index.html
     console.log(result);
-    expect(declarations.length).to.equal(4);
+    expect(declarations.length).to.equal(3);
     for(var i = 0; i < declarations.length; i++) {
       // plugin should change @@hash to hash based on file contents
       expect(fileDeclarationRegex.exec(declarations[i])[2]).to.not.equal('@@hash');
