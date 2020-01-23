@@ -55,8 +55,8 @@ module.exports = function() {
     this.indexFile = new File({
       cwd: 'test/fixtures/',
       base: 'test/fixtures/static',
-      path: 'test/fixtures/static/timestamp-index.html',
-      contents: new Buffer(this.htmlFileContents('timestamp-index'))
+      path: 'test/fixtures/static/index.html',
+      contents: new Buffer(this.htmlFileContents('index'))
     });
     callback();
   });
