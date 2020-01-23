@@ -51,6 +51,16 @@ module.exports = function() {
     callback();
   });
 
+  this.Given(/^I have declared a dependency in an html file with '@@timestamp' tokens$/, function (callback) {
+    this.indexFile = new File({
+      cwd: 'test/fixtures/',
+      base: 'test/fixtures/static',
+      path: 'test/fixtures/static/timestamp-index.html',
+      contents: new Buffer(this.htmlFileContents('timestamp-index'))
+    });
+    callback();
+  });
+
   this.When(/^I invoke the gulp\-rev\-suffix plugin$/, function (callback) {
     var revver = this.plugin();
     revver.on('data', function(data) {
@@ -92,6 +102,19 @@ module.exports = function() {
     var classDeclaration = $('img').attr('class');
     expect(classDeclaration).to.not.be.undefined;
     expect(classDeclaration).to.equal('pull-right company-logo media-object');
+    callback();
+  });
+
+  this.Then(/^The dependency is appended with a timestamp inline$/, function (callback) {
+    var fileDeclarationRegex = this.FILE_DECL;
+    var declarations = result.match(fileDeclarationRegex);
+    // defined in test/fixtures/static/index.html
+    expect(declarations.length).to.equal(3);
+    for(var i = 0; i < declarations.length; i++) {
+      // plugin should change @@hash to timestamp based on file contents
+      expect(fileDeclarationRegex.exec(declarations[i])[2]).to.not.equal('@@timestamp');
+      fileDeclarationRegex.lastIndex = 0;
+    }
     callback();
   });
 
