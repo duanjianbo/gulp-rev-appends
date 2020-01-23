@@ -21,16 +21,6 @@ module.exports = function() {
     callback();
   });
 
-  this.Given(/^I have declared dependencies in an html file with revision tokens$/, function (callback) {
-    this.indexFile = new File({
-      cwd: 'test/fixtures/',
-      base: 'test/fixtures/static',
-      path: 'test/fixtures/static/multiple-index.html',
-      contents: new Buffer(this.htmlFileContents('multiple-index'))
-    });
-    callback();
-  });
-
   this.Given(/^I have declared an image dependency in an html file with revision tokens$/, function (callback) {
     this.indexFile = new File({
       cwd: 'test/fixtures/',
@@ -74,7 +64,7 @@ module.exports = function() {
     callback();
   });
 
-  this.Then(/^The dependencies are appended with a hash inline$/, function (callback) {
+  this.Then(/^The dependencies are appended with a suffix inline$/, function (callback) {
     var fileDeclarationRegex = this.FILE_DECL;
     var declarations = result.match(fileDeclarationRegex);
     // defined in test/fixtures/static/index.html
