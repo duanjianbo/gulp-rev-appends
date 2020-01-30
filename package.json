@@ -1,7 +1,7 @@
 {
   "name": "gulp-rev-suffix",
-  "version": "0.1.1",
-  "description": "Cache-busting plugin for gulp.",
+  "version": "0.1.2",
+  "description": "Cache-busting plugin(new support for custom rev-type compared with gulp-rev-append) for gulp.",
   "main": "index.js",
   "repository": {
     "type": "git",

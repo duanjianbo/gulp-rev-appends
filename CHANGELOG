@@ -1,5 +1,12 @@
 
+0.1.2 / 2020-01-30
+==================
+  * modify readme.
+0.1.1 / 2020-01-24
+==================
+  * modify test scripts.
 0.1.0 / 2020-01-19
 ==================
   * forked from bustardcelly/gulp-rev-append.
   * support custom rev-value.
+
