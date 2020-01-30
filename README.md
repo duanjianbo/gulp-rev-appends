@@ -15,13 +15,13 @@ how?
 _gulpfile.js_
 ```
 var rev = require('gulp-rev-suffix');
-//default using file-hash as suffixes
+//default,  using file-hash as suffixes
 gulp.task('rev', function() {
   gulp.src('./index.html')
     .pipe(rev())
     .pipe(gulp.dest('.'));
 });
-//custom
+//custom,  add new rev-types
 gulp.task('rev', function() {
   gulp.src('./index.html')
     //rev(options) options:the array contains multiple custom rev-types
@@ -78,7 +78,7 @@ will turn into something similar as the following after running `gulp-rev-suffix
   </body>
 </html>
 ```
-`rev=@@hash(default rev-type),the original suffix defined in the HTML file will be replaced with the following priority`
+`Tips:rev=@@hash(default rev-type),the original suffix defined in the HTML file will be replaced with the following priority:`
 ```
 @@any-custom-type(predefined) > @@hash(existing file) > original-suffix
 ```
