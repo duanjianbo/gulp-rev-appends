@@ -1,6 +1,6 @@
 gulp-rev-suffix
 ---
-> gulp plugin for cache-busting files using query string file hash
+> gulp plugin for cache-busting files using query string suffix
 
 [![Build Status](https://travis-ci.org/duanjianbo/gulp-rev-suffix.svg?branch=master)](https://travis-ci.org/duanjianbo/gulp-rev-suffix)
 
@@ -15,7 +15,7 @@ how?
 _gulpfile.js_
 ```
 var rev = require('gulp-rev-suffix');
-//default
+//default using file-hash as suffixes
 gulp.task('rev', function() {
   gulp.src('./index.html')
     .pipe(rev())
@@ -38,7 +38,7 @@ $ gulp rev
 
 what?
 ---
-The [gulp-rev-suffix](https://github.com/duanjianbo/gulp-rev-suffix) plugins allows for appending a query-string file hash to dependencies declared in html files defined using the following regex: `(?:href|src)="(.*)[\?]rev=(.*)[\"]`
+The [gulp-rev-suffix](https://github.com/duanjianbo/gulp-rev-suffix) plugins allows for appending a query-string suffix to dependencies declared in html files defined using the following regex: `(?:href|src)="(.*)[\?]rev=(.*)[\"]`
 
 That's fancy talk for any stylesheet or script declarations that are declared in an html file such as the following:
 
@@ -78,7 +78,10 @@ will turn into something similar as the following after running `gulp-rev-suffix
   </body>
 </html>
 ```
-rev=@@hash,default rev-type
+`rev=@@hash(default rev-type),the original suffix defined in the HTML file will be replaced with the following priority`
+```
+@@any-custom-type(predefined) > @@hash(existing file) > original-suffix
+```
 
 why?
 ---
