@@ -6,7 +6,7 @@ var gutil = require('gulp-util');
 var PluginError = gutil.PluginError;
 var map = require('event-stream').map;
 
-var FILE_DECL = /(?:href=|src=|url\()['|"]([^\s>"']+?)\?rev=([^\s>"']+?)['|"]/gi;
+var FILE_DECL = /(?:href=|src=|url\()['|"]([^\s>"']+?)\?rev=@@([^\s>"']+?)['|"]/gi;
 
 //add custom rev-types
 /*
@@ -62,7 +62,7 @@ var revPlugin = function revPlugin(revTypes) {
               if(revTypes && revTypes.length>0){
                 for(var revTypeIndex in revTypes){
                   var revType=revTypes[revTypeIndex];
-                  if('@@'+revType.type===groups[2]){
+                  if(revType.type===groups[2]){
                     if(typeof revType.value==='function') rev=revType.value();
                     break;
                   }
@@ -74,7 +74,7 @@ var revPlugin = function revPlugin(revTypes) {
                 hash.update(data.toString(), 'utf8');
                 rev=hash.digest('hex');
               }
-              line = line.replace(groups[2], rev);
+              line = line.replace('@@'+groups[2], rev);
             }
             catch(e) {
               // fail silently.

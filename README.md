@@ -38,7 +38,7 @@ $ gulp rev
 
 what?
 ---
-The [gulp-rev-suffix](https://github.com/duanjianbo/gulp-rev-suffix) plugins allows for appending a query-string suffix to dependencies declared in html files defined using the following regex: `(?:href|src)="(.*)[\?]rev=(.*)[\"]`
+The [gulp-rev-suffix](https://github.com/duanjianbo/gulp-rev-suffix) plugins allows for appending a query-string suffix to dependencies declared in html files defined using the following regex: `(?:href|src)="(.*)[\?]rev=@@(.*)[\"]`
 
 That's fancy talk for any stylesheet or script declarations that are declared in an html file such as the following:
 
